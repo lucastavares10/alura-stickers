@@ -11,7 +11,7 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        String url = "https://mocki.io/v1/9a7c1ca9-29b4-4eb3-8306-1adb9d159060";
+        String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2022-06-12&end_date=2022-06-14";
 
         URI endereco = URI.create(url);
 
@@ -29,12 +29,12 @@ public class App {
 
         StickerGenerator generator = new StickerGenerator();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < movieList.size(); i++) {
 
             Map<String, String> movie = movieList.get(i);
 
-            String imageUrl = movie.get("image").replaceAll("(@+)(.*).jpg$", "$1.jpg");
-            String fileName = movie.get("fullTitle") + ".png";
+            String imageUrl = movie.get("url");
+            String fileName = movie.get("title") + ".png";
 
             InputStream inputStream = new URL(imageUrl).openStream();
 
