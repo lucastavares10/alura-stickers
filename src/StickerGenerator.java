@@ -1,16 +1,21 @@
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.InputStream;
 
 import javax.imageio.ImageIO;
 
 public class StickerGenerator {
 
-  public void create() throws Exception {
+  public void create(InputStream inputStream, String fileName) throws Exception {
 
-    BufferedImage originalImage = ImageIO.read(new File("img/filme.jpg"));
+    // InputStream inputStream = new FileInputStream(new File("img/filme.jpg"));
+    // InputStream inputStream = new URL(
+    // "https://m.media-amazon.com/images/M/MV5BNDJhYTk2MTctZmVmOS00OTViLTgxNjQtMzQxOTRiMDdmNGRjXkEyXkFqcGdeQXVyMTMxODk2OTU@.jpg")
+    // .openStream();
+    BufferedImage originalImage = ImageIO.read(inputStream);
 
     int width = originalImage.getWidth();
     int height = originalImage.getHeight();
@@ -28,15 +33,7 @@ public class StickerGenerator {
 
     graphics.drawString("TOPZERA", 150, newHeight - 100);
 
-    ImageIO.write(newImage, "png", new File("img/figurinha.png"));
-
-  }
-
-  public static void main(String[] args) throws Exception {
-
-    StickerGenerator stickerGenerator = new StickerGenerator();
-
-    stickerGenerator.create();
+    ImageIO.write(newImage, "png", new File("img/" + fileName));
 
   }
 
