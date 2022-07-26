@@ -29,13 +29,17 @@ public class App {
 
         StickerGenerator generator = new StickerGenerator();
 
-        for (Map<String, String> movie : movieList) {
-            String imageUrl = movie.get("image");
+        for (int i = 0; i < 10; i++) {
+
+            Map<String, String> movie = movieList.get(i);
+
+            String imageUrl = movie.get("image").replaceAll("(@+)(.*).jpg$", "$1.jpg");
             String fileName = movie.get("fullTitle") + ".png";
 
             InputStream inputStream = new URL(imageUrl).openStream();
 
             generator.create(inputStream, fileName);
+
         }
 
     }
